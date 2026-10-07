@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab DBMS Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Lab DBMS</h2>
+        <ul class="nav-links">
+            <li><a href="#" data-target="add-section" class="active">Add Records</a></li>
+            <li><a href="#" data-target="display-section">Display Records</a></li>
+            <li><a href="#" data-target="search-section">Search Records</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div id="alert-box" class="alert hidden"></div>
+
+        <!-- Add Records Section -->
+        <section id="add-section" class="content-section active">
+            <h1>Add New Records</h1>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tab-patient">Patient</button>
+                <button class="tab-btn" data-tab="tab-report">Test Report</button>
+                <button class="tab-btn" data-tab="tab-result">Analyte Result</button>
+            </div>
+
+            <!-- Patient Form -->
+            <div class="tab-content active" id="tab-patient">
+                <div class="card">
+                    <h3>Add Patient</h3>
+                    <form id="form-patient">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="p_first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="p_last_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="p_dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select id="p_gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact No</label>
+                            <input type="text" id="p_contact" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Patient</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Report Form -->
+            <div class="tab-content" id="tab-report">
+                <div class="card">
+                    <h3>Add Urine Test Report</h3>
+                    <form id="form-report">
+                        <div class="form-group">
+                            <label>Patient ID</label>
+                            <input type="number" id="r_patient_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Test Date</label>
+                            <input type="date" id="r_test_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Sample ID</label>
+                            <input type="text" id="r_sample_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Lab Technician</label>
+                            <input type="text" id="r_technician" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Diagnosis Status</label>
+                            <input type="text" id="r_status" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Report</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Analyte Result Form -->
+            <div class="tab-content" id="tab-result">
+                <div class="card">
+                    <h3>Add Analyte Result</h3>
+                    <form id="form-result">
+                        <div class="form-group">
+                            <label>Report ID</label>
+                            <input type="number" id="a_report_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Analyte Name</label>
+                            <input type="text" id="a_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Concentration</label>
+                            <input type="number" step="0.01" id="a_concentration" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Unit</label>
+                            <input type="text" id="a_unit" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Reference Range</label>
+                            <input type="text" id="a_range" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Result</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Display Records Section -->
+        <section id="display-section" class="content-section">
+            <h1>Display Records</h1>
+            
+            <div class="tabs">
+                <button class="display-tab-btn active" data-tab="disp-patient">Patients</button>
+                <button class="display-tab-btn" data-tab="disp-report">Test Reports</button>
+                <button class="display-tab-btn" data-tab="disp-result">Analyte Results</button>
+            </div>
+
+            <div class="card table-container">
+                <table id="display-table" class="styled-table">
+                    <thead>
+                        <tr id="display-thead"></tr>
+                    </thead>
+                    <tbody id="display-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Search Records Section -->
+        <section id="search-section" class="content-section">
+            <h1>Search Patient Records</h1>
+            
+            <div class="card">
+                <form id="form-search" class="search-form">
+                    <input type="text" id="search_query" placeholder="Enter Patient ID or Name" required>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
+            <div id="search-results-container" class="search-results">
+                <!-- Results dynamically injected here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
